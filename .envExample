@@ -1,0 +1,7 @@
+URL = url do projeto 
+DB_HOST = localhost
+DB_NAME = dbname 
+DB_USER = root
+DB_PASS = senha
+DB_PORT=3306 
+MAINTENANCE=false or true 

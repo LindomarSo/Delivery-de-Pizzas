@@ -1,0 +1,52 @@
+<section id="table">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="my-5"><i class="bi bi-cart3"></i> Gerenciar Pedidos</h2>
+        </div>
+        <div class="col-md-12">
+            <table class="table table-striped text-left">
+                <thead>
+                    <tr>
+                        <th>Pedido</th>
+                        <th>Borda</th>
+                        <th>Massa</th>
+                        <th>Sabores</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Cheddar</td>
+                        <td>Catupiri</td>
+                        <td>4 Queijos</td>
+                        <td>
+                            <form method="POST">
+                                <div class="mb-3 update-form">
+                                    <input type="hidden" name="type" value="update">
+                                    <input type="hidden" name="id" value="1">
+                                    <select name="status" class="form-control status">
+                                        <option value="">Entrega</option>
+                                    </select>
+                                    <button class="btn text-primary" type="submit">
+                                        <i class="bi bi-arrow-repeat"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </td>
+                        <td>
+                            <form method="POST">
+                                <input type="hidden" name="type" value="delete">
+                                <input type="hidden" name="id" value="1">
+                                <button type="submit" class="btn text-danger">
+                                    <i class="bi bi-x-square-fill"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>  
+        </div>
+    </div>
+</section>

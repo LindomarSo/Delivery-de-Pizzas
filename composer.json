@@ -1,0 +1,8 @@
+{
+    "name": "mvc/pizzaria",
+    "autoload": {
+        "psr-4": {
+            "App\\":"app/"
+        }
+    }
+}

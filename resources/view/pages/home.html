@@ -1,0 +1,38 @@
+{{status}}
+<section id="main-banner">
+    <h1>Faça seu pedido</h1>
+</section>
+<div class="container">
+    <div id="main-container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Monte a pizza como desejar</h2>
+                <form action="" method="POST" id="pizza-form">
+                    <div class="my-3">
+                        <label for="borda" class="form-label">Borda:</label>
+                        <select name="borda" id="borda" class="form-control" >
+                            <option value="" selected disabled>Selecione uma borda</option>
+                            {{tipo}}
+                        </select>
+                    </div>
+                    <div class="my-3">
+                        <label for="massa" class="form-label">Massa:</label>
+                        <select name="massa" id="massa" class="form-control" >
+                            <option value="" selected disabled>Selecione uma massa</option>
+                            {{massa}}
+                        </select>
+                    </div>
+                    <div class="my-3">
+                        <label for="sabores" class="form-label">Sabores: (Máximo 3)</label>
+                        <select multiple name="sabores[]" id="sabores" class="form-control" >
+                            {{sabores}}
+                        </select>
+                    </div>
+                    <div class="my-3">
+                        <input class="btn btn-primary" type="submit" value="Fazer Pedido">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
