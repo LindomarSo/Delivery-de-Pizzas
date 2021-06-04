@@ -45,6 +45,7 @@ h1, h2, h3{
     width: 65%;
 }
 
+/** MAX WIDTH **/
 @media screen and (max-width: 991.98px){
     #header .navbar-collapse{
         width: 100%;
@@ -58,5 +59,20 @@ h1, h2, h3{
         display: block;
         width: 100%;
         padding-left: 0;
+    }
+
+    #table span{
+        display: none;
+    }
+
+    #table thead th{
+        padding: 0;
+    }
+
+    #table thead th:nth-child(5),
+    #table thead th:nth-child(6),
+    #table tbody td:nth-child(5),
+    #table tbody td:nth-child(6){
+        display: none;
     }
 }

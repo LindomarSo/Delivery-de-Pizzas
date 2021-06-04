@@ -14,5 +14,8 @@ require __DIR__.'/routes/pages.php';
 // INCLUI ROTAS DO PAINEL
 include __DIR__.'/routes/admin.php';
 
+// INCLUI ROTAS DAS API
+include __DIR__.'/routes/api.php';
+
 //RESPONSE DAS ROTAS
 $obRouter->run()->sendResponse();

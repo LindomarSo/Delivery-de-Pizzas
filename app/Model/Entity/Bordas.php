@@ -24,4 +24,11 @@ class Bordas
     public static function getBordas($where = null, $order = null, $limit = null, $field = '*'){
         return (new Database('bordas'))->select($where, $order, $limit, $field);
     }
+
+    /**
+     * Método responsável por resgatar as bordas
+     */
+    public static function getBorda($id){
+        return (new Database('bordas'))->select('id='.$id)->fetchObject(self::class);
+    }
 }

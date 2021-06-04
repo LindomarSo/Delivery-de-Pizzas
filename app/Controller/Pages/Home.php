@@ -2,9 +2,9 @@
 
 namespace App\Controller\Pages;
 
-use \App\Utils\View;
-use \App\Model\Entity\Bordas;
-use \App\Model\Entity\Massas;
+use App\Utils\View;
+use App\Model\Entity\Bordas;
+use App\Model\Entity\Massas;
 use App\Model\Entity\Sabores;
 use App\Model\Entity\Pizza;
 use App\Model\Entity\PizzaSabor;
@@ -18,7 +18,7 @@ class Home extends Page
     public static function getHome($mensagem = null, $field = null){
 
         //STATUS
-        $status = !is_null($mensagem) ?  View::render('pages/alerts/sucesso',[
+        $status = !is_null($mensagem) ?  View::render('alert/alert',[
             'status'=>$mensagem,
             'field'=>$field
         ]) : '';
@@ -100,20 +100,21 @@ class Home extends Page
         $obPizza = new Pizza;
         //INSTÂNCIA DE SABORES
         $obSabores = new PizzaSabor;
-        if($postVars == []){
+        $borda = isset($postVars['borda']) ? $postVars['borda'] : '';
+        $massa = isset($postVars['massa']) ? $postVars['massa'] : '';
+        $sabores = isset($postVars['sabores']) ? $postVars['sabores'] : '';
+       
+        if($borda == '' or $massa == '' or $sabores == ''){
             return self::getHome('Não são permitidos campos vazios!', 'alert-danger');
-        }else{
-            if(count($postVars) <= 2){
-                return self::getHome('Não são permitidos campos vazios', 'alert-danger');
-            }else if(count($postVars['sabores']) > 3){
-                return self::getHome('São permitidos apenas três sabores!', 'alert-danger');
-            }else{
-                $obPizza->bordas_id = $postVars['borda'];
-                $obPizza->massas_id = $postVars['massa'];
-                $obSabores->sabores_id = $postVars['sabores'];
-            }
         }
-           
+        if(count($sabores) > 3){
+            return self::getHome('São permitidos apenas 3 sabores de pizza', 'alert-danger');
+        }
+        
+        $obPizza->bordas_id = $borda;
+        $obPizza->massas_id = $massa;
+        $obSabores->sabores_id = $sabores;
+
         return $obPizza->cadastrarPizza($request) ? 
                 self::getHome('Pedido feito com sucesso!', 'alert-success') :
                 self::getHome('Erro ao processar o pedido!', 'alert-danger');

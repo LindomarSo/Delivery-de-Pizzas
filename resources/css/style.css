@@ -102,10 +102,6 @@ p{
     border-color: #000;
 }
 
-p.kl{
-    background-color: #155724;
-}
-
 /* footer */
 
 footer{
@@ -119,4 +115,22 @@ footer{
     justify-content: center;
     padding: 20px;
     font-weight: bold;
+}
+
+/** MAX WIDTH **/
+@media screen and (max-width: 768px){
+    #main-banner{
+        background-position-y: 0;
+    }
+}
+
+@media screen and (max-width: 580px){
+    #main-banner h1{
+        padding: 10px;
+        font-size: 30px;
+    }
+
+    #main-container .btn-primary{
+        width: 100%;
+    }
 }

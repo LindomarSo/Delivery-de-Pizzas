@@ -1,0 +1,29 @@
+<tr>
+    <td>{{pedido}}</td>
+    <td>{{borda}}</td>
+    <td>{{massa}}</td>
+    <td>{{sabores}}</td>
+    <td>
+        <form method="POST">
+            <div class="mb-3 update-form">
+                <input type="hidden" name="type" value="updated">
+                <input type="hidden" name="id" value="{{id}}">
+                <select name="status" class="form-control status">
+                    {{status}}
+                </select>
+                <button class="btn text-primary" type="submit">
+                    <i class="bi bi-arrow-repeat"></i>
+                </button>
+            </div>
+        </form>
+    </td>
+    <td>
+        <form method="POST">
+            <input type="hidden" name="type" value="deleted">
+            <input type="hidden" name="id" value="{{id}}">
+            <button type="submit" class="btn text-danger">
+                <i class="bi bi-x-square-fill"></i>
+            </button>
+        </form>
+    </td>
+</tr>

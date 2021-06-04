@@ -24,4 +24,11 @@ class Massas
     public static function getMassas($where = null, $order = null, $limit = null, $field = '*'){
         return (new Database('massas'))->select($where, $order, $limit, $field);
     }
+
+    /**
+     * Método responsável por retornar uma massa 
+     */
+    public static function getMassaById($id){
+        return (new Database('massas'))->select('id='.$id)->fetchObject(self::class);
+    }
 }

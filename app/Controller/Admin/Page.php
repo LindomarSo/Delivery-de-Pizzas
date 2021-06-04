@@ -2,6 +2,8 @@
 
 namespace App\Controller\Admin;
 
+use App\Database\Pagination;
+use App\Model\Entity\Pedido;
 use App\Utils\View;
 
 Class Page 

@@ -36,5 +36,12 @@ class Pizza
         
         return true;
     }
+
+    /**
+     * Método responsável por resgatar as pizzas do banco
+     */
+    public static function getPizzaById($id){
+        return (new Database('pizzas'))->select('id='.$id)->fetchObject(self::class);
+    }
     
 }

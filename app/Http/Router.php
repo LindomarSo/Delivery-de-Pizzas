@@ -34,12 +34,26 @@ class Router
     private $request;
 
     /**
+     * Content Type
+     * @var string
+     */
+    private $contentType = 'text/html';
+
+    /**
      * Method responsible to start the class
      */
     public function __construct($url){
         $this->request = new Request($this);
         $this->url = $url;
         $this->setPrefix();
+    }
+
+    /**
+     * Método responsável por alterar o content type
+     * @param string $message
+     */
+    public function setContentType($message){
+        $this->contentType = $message;
     }
 
     /**
@@ -102,6 +116,15 @@ class Router
      */
     public function post($route, $params = []){
         return $this->addRoute('POST',$route, $params);
+    }
+
+    /**
+     * Delete route
+     * @param string 
+     * @param array
+     */
+    public function delete($route, $params = []){
+        return $this->addRoute('DELETE',$route, $params);
     }
 
     /**
@@ -173,8 +196,32 @@ class Router
            return (new Queue($route['controller'], $route['middlewares'], $args))->next($this->request);
 
         }catch(Exception $e){
-            return new Response($e->getCode(), $e->getMessage());
+            return new Response($e->getCode(), $this->getMessageError($e->getMessage()),$this->contentType);
         }
+    }
+
+    /**
+     *Método responsável por pegar a mensagem de erro
+     */
+    public function getMessageError($message){
+        switch($this->contentType){
+            case 'application/json':
+                return [
+                    'error'=>$message
+                ];
+                break;
+            default:
+                return $message;
+                break;    
+        }
+    }
+
+    /**
+     * Método responsável por pegar a url sem os gets
+     * @return string
+     */
+    public function getUrl(){
+        return $this->url.$this->getUri();
     }
 
     /**

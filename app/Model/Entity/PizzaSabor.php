@@ -4,26 +4,18 @@ namespace App\Model\Entity;
 
 use App\Database\Database;
 
-class PizzaSabor 
+class PizzaSabor extends Pedido
 {
-    /**
-     * Vabiable for pizza_id
-     * @var integer
-     */
-    public $pizzas_id;
-
-    /**
+     /**
      * Variable for sabores_id
-     * @var integer
+     * @var 
      */
     public $sabores_id;
 
     /**
-     * Variable responsible for status
-     * @var integer
+     * Método responsável por um inserir um sabor no banco
+     * @param Request $request
      */
-    public $status_id = 1;
-
     public function insertSabor($request){
         // CONEXÃO COM O BANCO
         $connection = new Database('pizza_sabor');
@@ -38,20 +30,18 @@ class PizzaSabor
             ]);
         }
 
-        $this->status();
+        $this->pedido();
 
         return true;
     }
 
     /**
-     * Method responsible for update the status
+     * Método responsável por buscar um registro pelo ID
+     * @param integer $id 
+     * @return PizzaSabor
      */
-    public function status(){
-        // CONNECTION DATABASE
-        $connection =  new Database('pedidos');
-        $connection->insert([
-            'pizzas_id'=>$this->pizzas_id,
-            'status_id'=>$this->status_id
-        ]);
+    public static function getPizzaSaborById($id){
+        return (new Database('pizza_sabor'))->select('pizzas_id='.$id)
+                                            ->fetchAll(\PDO::FETCH_ASSOC);
     }
 }

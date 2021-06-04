@@ -100,7 +100,7 @@ class Database
         $order = strlen($order) ? " ORDER BY ".$order : "";
         $limit = strlen($limit) ? "LIMIT ".$limit : "";
         $query = "SELECT ".$field." FROM ".$this->table." ".$where. " ".$order. " ".$limit;
-        
+  
         return $this->execute($query);
     }
 
@@ -116,5 +116,34 @@ class Database
         $this->execute($query, array_values($params));
 
         return $this->connection->lastInsertId();
+    }
+
+    /**
+     * Método responsável por deletar um registro no banco 
+     * @param string $where
+     * @return boolean
+     */
+    public function delete($where){
+        // MONTA A QUERY
+        $query = "DELETE FROM ".$this->table." WHERE ".$where;
+        
+        $this->execute($query);
+
+        return true;
+    }
+
+    /**
+     * Método responsável por atualizar um registro no banco
+     * @param integer $where
+     * @return boolean
+     */
+    public function update($where, $params = []){
+        $field = array_keys($params);
+        // MONTA A QUERY
+        $query  = "UPDATE ".$this->table." SET ".implode('=?, ',$field)."=? WHERE ".$where;
+        
+        $this->execute($query, array_values($params));
+
+        return true;
     }
 }
